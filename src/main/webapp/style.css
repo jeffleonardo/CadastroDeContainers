@@ -1,0 +1,135 @@
+@charset "utf-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap')
+	;
+*{
+	margin:0;
+	padding: 0;
+	box-sizing: border-box;;
+}
+
+body, html{
+	width: 100%;
+	height:100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	font-weight: 400;
+}
+
+.header{
+	height: 100px;
+	width: 100%;
+	background-color: #2ECCFA;	
+	text-align: center;	
+	padding: 25px;
+}
+
+.header h1{
+	color:#642EFE;	
+}
+
+.externa{
+	width: 100%;
+	height:100%;
+	position: absolute;
+	top: 0;
+	left:0;
+}
+
+.interna{
+	width: 600px;
+	height: 600px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -300px;
+	margin-left: -300px;
+}
+
+.interna h4{
+	margin-left: 140px;
+}
+
+.interna a{
+	margin-left: 260px;
+}
+
+
+.botao1 {
+	text-decoration: none;
+	background-color: #66bbff;
+	padding: 5px 10px 5px 10px;
+	color: #fff;
+	font-size: 1.2em;
+	font-weight: 700;
+	border-radius: 5px;
+	border: 0;
+	cursor: pointer;
+}
+
+.botao2 {
+	text-decoration: none;
+	background-color: #d51213;
+	padding: 5px 10px 5px 10px;
+	color: #fff;
+	font-size: 1.2em;
+	font-weight: 700;
+	border-radius: 5px;
+}
+
+.caixa1 {
+	margin-left: 140px;
+	width: 320px;
+	padding: 15px;
+	margin-bottom: 15px;
+	border: 1px solid #66bbff;
+	border-radius: 5px;
+}
+
+.caixa1 option{
+	font-size: 20px;
+}
+
+.caixa2 {
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #66bbff;
+	border-radius: 5px;
+}
+
+#caixa3 {
+	padding: 5px;
+	margin-bottom: 10px;
+	border: 1px solid #ff0000;
+	border-radius: 5px;
+}
+
+#tabela {
+	margin-top: 30px;
+	border-collapse: collapse;
+}
+
+#tabela th {
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: left;
+	background-color: #66bbff;
+	color: #fff;
+}
+
+#tabela td {
+	border: 1px solid #ddd;
+	padding: 10px;
+}
+
+#rodape{
+	height: 50px;
+	text-align: center;
+	color:#642EFE;
+	background-color: #2ECCFA;
+	position:absolute;
+    bottom:0;
+    width:100%;
+    padding: 10px;
+}
