@@ -12,7 +12,7 @@
 			<h1>Cadastrar container</h1>
 		</div>
 		<div class="interna">
-			<form name="newContainer"  method="get">
+			<form name="newContainer" action="insertC" method="get">
 				<h4>Cliente:</h4>
 				<input type="text" class="caixa1" name="cliente"
 					placeholder="Nome do cliente" required> <br>
@@ -42,7 +42,9 @@
 					<option value="Importacao">Importação</option>
 					<option value="Exportacao">Exportacao</option>
 				</select><br><br> 
-				<a href="" class="botao1">Próximo</a>
+				<div class="btn_submit">
+					<input type="submit" value="Próximo" class="botao1">
+				</div>
 			</form>
 			<br>
 			<br>

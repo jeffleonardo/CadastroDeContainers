@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<title>Cadastro de Movimentação</title>
+<link rel="icon" href="imagens/favicon.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="externa">
+		<div class="header">
+			<h1>Cadastrar movimentação</h1>
+		</div>
+		<div class="interna">
+			<form name="newContainer" action="insertM" method="get">
+				<h4>Movimentação:</h4>
+				<select name="movimentacao" class="caixa1" required>
+					<option disabled value="" selected hidden>Tipo:</option>
+					<option value="Embarque">Embarque</option>
+					<option value="Descarga">Descarga</option>
+					<option value="Gate In">Gate In</option>
+					<option value="Gate out">Gate out</option>
+					<option value="Pos/Pilha">Pos/Pilha</option>
+					<option value="Pesagem">Pesagem</option>
+					<option value="Scanner">Scanner</option>
+				</select> <br>
+
+				<h4>Entrada:</h4>
+				<input type="datetime-local" name="dataInicio"
+					value="2017-06-01 08:30" class="caixa1">
+
+
+				<h4>Saída:</h4>
+				<input type="datetime-local" name="dataFim" value="2017-06-01 08:30"
+					class="caixa1">
+				<div class="btn_submit">
+					<input type="submit" value="Cadastrar" class="botao1">
+				</div>
+			</form>
+			<br> <br>
+		</div>
+		<div id="rodape">Todos os direitos reservados</div>
+	</div>
+</body>
+</html>
