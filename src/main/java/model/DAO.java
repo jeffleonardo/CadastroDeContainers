@@ -44,6 +44,12 @@ public class DAO {
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(create);
+			
+			pst.setString(1, container.getNomeCliente());
+			pst.setString(2, container.getNumContainer());
+			pst.setString(3, container.getTipo());
+			pst.setString(4, container.getStatusAtual());
+			pst.setString(5, container.getCategoria());
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -52,5 +58,17 @@ public class DAO {
 
 	public void inserirMovimentacao(JavaBeans container) {
 		String create = "insert into movimentacoes (tipoMovimentacao, dataInicio, dataFim, id_container) values(?,?,?,(select id from movimentacoes where id = (id_container)";
+		
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(create);
+			
+			pst.setString(1, container.getTipoMovimentacao());
+			pst.setString(2, container.getDataInicio());
+			pst.setString(3, container.getDataFim());
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 }
