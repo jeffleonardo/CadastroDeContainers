@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/read", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -26,14 +29,13 @@ public class Controller extends HttpServlet {
 
 		String action = request.getServletPath();
 		System.out.println(action);
+		System.out.println(container);
 		if (action.equals("/main")) {
 			listarContainers(request, response);
 		} else if (action.equals("/insertC")) {
 			inserirContainer(request, response);
-			response.sendRedirect("novaMovimentacao.html");
 		} else if (action.equals("/insertM")) {
 			inserirMovimentacao(request, response);
-			listarContainers(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -42,7 +44,12 @@ public class Controller extends HttpServlet {
 	// listar containers
 	protected void listarContainers(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("cadastro.jsp");
+		// criando um objeto que ira receber os dados JavaBeans
+		ArrayList<JavaBeans> lista = dao.listarContainers();
+		// encaminhar a lista ao documento agenda.jsp
+		request.setAttribute("containers", lista);
+		RequestDispatcher rd = request.getRequestDispatcher("agenda.jsp");
+		rd.forward(request, response);
 	}
 
 	// iserir container
@@ -60,7 +67,7 @@ public class Controller extends HttpServlet {
 		dao.inserirContainer(container);
 
 		// redirecionar para o documento agenda.jsp
-		response.sendRedirect("main");
+		response.sendRedirect("novaMovimentacao.html");
 
 	}
 
@@ -70,10 +77,8 @@ public class Controller extends HttpServlet {
 		container.setDataInicio(request.getParameter("dataInicio"));
 		container.setDataFim(request.getParameter("dataFim"));
 
-		// invocar o metodo inserirContainer passando o objeto container
 		dao.inserirMovimentacao(container);
 
-		// redirecionar para o documento agenda.jsp
 		response.sendRedirect("main");
 	}
 
