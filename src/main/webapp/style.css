@@ -38,25 +38,34 @@ body, html{
 }
 
 .interna{
-	width: 600px;
-	height: 600px;
+	width: 1000px;
+	height: 1000px;
 	position: absolute;
-	top: 60%;
+	top: 88%;
 	left: 50%;
-	margin-top: -300px;
-	margin-left: -300px;
+	margin-top: -500px;
+	margin-left: -500px;	
+}
+.navBar{
+	padding:5px;
+	padding-left:0;
+	width: 800px;
+	height: 40px;
+	margin-top:50px;
+	margin-left: 345px;
+	
 }
 
 .interna h4{
-	margin-left: 140px;
+	margin-left: 340px;
 }
 
 .interna a{
-	margin-left: 260px;
+	margin-left: 400px;
 }
 
 .btn_submit input{
-   margin-left: 245px;
+   margin-left: 450px;
 }
 
 
@@ -83,7 +92,7 @@ body, html{
 }
 
 .caixa1 {
-	margin-left: 140px;
+	margin-left: 340px;
 	width: 320px;
 	padding: 15px;
 	margin-bottom: 15px;
@@ -110,7 +119,9 @@ body, html{
 }
 
 #tabela {
+	padding:0;
 	margin-top: 30px;
+	margin-left: 400;
 	border-collapse: collapse;
 }
 

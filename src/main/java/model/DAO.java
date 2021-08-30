@@ -87,15 +87,15 @@ public class DAO {
 	public ArrayList<JavaBeans> listarContainers() {
 		// criando um objeto para acessar a classe JavaBeans
 		ArrayList<JavaBeans> containers = new ArrayList<>();
-		String read = "select * from contatos order by nome";
+		String read = "select c.numContainer, c.nomeCliente, c.tipo, c.statusAtual, c.categoria, m.tipoMovimentacao, m.horaInicio, m.horaFim from container c inner join movimentacoes m on c.id = m.id_container order by nomeCliente desc";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				// variaveis de apoio que recebem os dados do banco
-				String nomeCliente = rs.getString(1);
-				String numContainer = rs.getString(2);
+				String numContainer = rs.getString(1);
+				String nomeCliente = rs.getString(2);				
 				String tipo = rs.getString(3);
 				String statusAtual = rs.getString(4);
 				String categoria = rs.getString(5);

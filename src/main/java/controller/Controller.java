@@ -47,13 +47,12 @@ public class Controller extends HttpServlet {
 		// criando um objeto que ira receber os dados JavaBeans
 		ArrayList<JavaBeans> lista = dao.listarContainers();
 		// encaminhar a lista ao documento agenda.jsp
-		request.setAttribute("containers", lista);
-		RequestDispatcher rd = request.getRequestDispatcher("agenda.jsp");
+		request.setAttribute("container", lista);
+		RequestDispatcher rd = request.getRequestDispatcher("cadastro.jsp");
 		rd.forward(request, response);
 	}
 
 	// iserir container
-
 	protected void inserirContainer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// setar as variaveis JavaBeans
