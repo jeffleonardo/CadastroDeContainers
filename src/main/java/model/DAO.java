@@ -112,5 +112,21 @@ public class DAO {
 			return null;
 		}
 	}
+	
+	//CRUD UPDATE
+	
+	//selecionar o container
+	public void selecionarContainer(JavaBeans container) {
+		String read2 = "select from container where nomeCliente = ?";
+		
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(read2);
+			pst.setString(1, container.getNomeCliente());
+			ResultSet rs = pst.executeQuery();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 
 }

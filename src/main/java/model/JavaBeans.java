@@ -1,7 +1,7 @@
 package model;
 
 public class JavaBeans {
-	
+	private String id;
 	private String nomeCliente;
 	private String numContainer;
 	private String tipo;
@@ -10,10 +10,16 @@ public class JavaBeans {
 	private String tipoMovimentacao;
 	private String dataInicio;
 	private String dataFim;
-	
+
 	public JavaBeans() {
 		super();
 	}
+
+	
+	public JavaBeans(String id) {
+		super();
+		this.id = id;
+		}
 
 
 	public JavaBeans(String nomeCliente, String numContainer, String tipo, String statusAtual, String categoria,
@@ -27,6 +33,14 @@ public class JavaBeans {
 		this.tipoMovimentacao = tipoMovimentacao;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
+	}	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getNomeCliente() {
@@ -91,6 +105,6 @@ public class JavaBeans {
 
 	public void setDataFim(String dataFim) {
 		this.dataFim = dataFim;
-	}	
-	
+	}
+
 }

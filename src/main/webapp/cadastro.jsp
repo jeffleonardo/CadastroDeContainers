@@ -11,23 +11,24 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>Teste T2S</title>
 <link rel="icon" href="imagens/favicon.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div  class="externa">
+	<div class="externa">
 		<div class="header">
-			<h1>Cadastro de containers</h1>
+			<h1>Painel de Controle</h1>
 		</div>
 		<div class="navBar">
-		<a href="novoContainer.html" class="botao1">Novo Container</a><a
+			<a href="novoContainer.html" class="botao1">Novo Container</a><a
 				href="report" class="botao2">Relatório</a>
-		</div>		
-		<div class="interna">			
+		</div>
+		<div class="interna">
 			<table id="tabela">
 				<thead>
 					<tr>
+						<th>Id</th>
 						<th>Cliente</th>
 						<th>Nº Container</th>
 						<th>Tipo</th>
@@ -36,6 +37,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 						<th>Movimentação</th>
 						<th>Entrada</th>
 						<th>Saída</th>
+						<th>Opções</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,6 +45,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 					for (int i = 0; i < lista.size(); i++) {
 					%>
 					<tr>
+						<td><%=lista.get(i).getId()%></td>
 						<td><%=lista.get(i).getNomeCliente()%></td>
 						<td><%=lista.get(i).getNumContainer()%></td>
 						<td><%=lista.get(i).getTipo()%></td>
@@ -51,6 +54,10 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 						<td><%=lista.get(i).getTipoMovimentacao()%></td>
 						<td><%=lista.get(i).getDataInicio()%></td>
 						<td><%=lista.get(i).getDataFim()%></td>
+						<td><a href="select?id=<%=lista.get(i).getId()%>"
+							class="botao1">Editar</a><a
+							href="javascript: confirmar(<%=lista.get(i).getId()%> )"
+							class="botao2">Excluir</a></td>
 					</tr>
 					<%
 					}
@@ -59,6 +66,6 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 			</table>
 		</div>
 	</div>
-	<div id="rodape">Todos os direitos reservados</div>
+	<div id="rodape">&copy;Todos os direitos reservados</div>
 </body>
 </html>

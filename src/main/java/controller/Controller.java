@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/read", "/update", "/delete" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +36,9 @@ public class Controller extends HttpServlet {
 			inserirContainer(request, response);
 		} else if (action.equals("/insertM")) {
 			inserirMovimentacao(request, response);
-		} else {
+		} else if (action.equals("/select")) {
+			editarContainer(request, response);
+		}else {
 			response.sendRedirect("index.html");
 		}
 	}
@@ -80,5 +82,25 @@ public class Controller extends HttpServlet {
 
 		response.sendRedirect("main");
 	}
-
+	
+	//editar contato
+	protected void editarContainer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//recebimento do contato que será editado
+		String idCliente = request.getParameter("id");
+		//System.out.println(idCliente);
+		//setar a variavel JavaBeans
+		container.setId(idCliente);
+		//executa o metodo selecionarContainer(DAO)
+		dao.selecionarContainer(container);
+		
+		request.setAttribute("nomeCliente", container.getNomeCliente());
+		request.setAttribute("numContainer", container.getNumContainer());
+		request.setAttribute("tipo", container.getTipo());
+		request.setAttribute("status", container.getStatusAtual());
+		request.setAttribute("categoria", container.getCategoria());
+		// Encaminhar ao documento editar.jsp
+		RequestDispatcher rd = request.getRequestDispatcher("cadastro.jsp");
+		rd.forward(request, response);
+	}	
 }

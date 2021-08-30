@@ -60,10 +60,6 @@ body, html{
 	margin-left: 340px;
 }
 
-.interna a{
-	margin-left: 400px;
-}
-
 .btn_submit input{
    margin-left: 450px;
 }
@@ -143,8 +139,10 @@ body, html{
 	text-align: center;
 	color:#642EFE;
 	background-color: #2ECCFA;
-	position:absolute;
+	clear: both;
+    position: fixed;
     bottom:0;
+    left: 0;
     width:100%;
-    padding: 10px;
+    padding: 15px;
 }
