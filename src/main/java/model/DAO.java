@@ -87,23 +87,24 @@ public class DAO {
 	public ArrayList<JavaBeans> listarContainers() {
 		// criando um objeto para acessar a classe JavaBeans
 		ArrayList<JavaBeans> containers = new ArrayList<>();
-		String read = "select c.numContainer, c.nomeCliente, c.tipo, c.statusAtual, c.categoria, m.tipoMovimentacao, m.horaInicio, m.horaFim from container c inner join movimentacoes m on c.id = m.id_container order by nomeCliente desc";
+		String read = "select c.id,c.numContainer, c.nomeCliente, c.tipo, c.statusAtual, c.categoria, m.tipoMovimentacao, m.horaInicio, m.horaFim from container c inner join movimentacoes m on c.id = m.id_container order by id asc";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
 				// variaveis de apoio que recebem os dados do banco
-				String numContainer = rs.getString(1);
-				String nomeCliente = rs.getString(2);				
-				String tipo = rs.getString(3);
-				String statusAtual = rs.getString(4);
-				String categoria = rs.getString(5);
-				String tipoMovimentacao = rs.getString(6);
-				String dataInicio = rs.getString(7);
-				String dataFim = rs.getString(8);
+				String id = rs.getString(1);
+				String numContainer = rs.getString(2);
+				String nomeCliente = rs.getString(3);				
+				String tipo = rs.getString(4);
+				String statusAtual = rs.getString(5);
+				String categoria = rs.getString(6);
+				String tipoMovimentacao = rs.getString(7);
+				String dataInicio = rs.getString(8);
+				String dataFim = rs.getString(9);
 				// populando o arrayList
-				containers.add(new JavaBeans(nomeCliente, numContainer, tipo, statusAtual,categoria, tipoMovimentacao, dataInicio, dataFim));
+				containers.add(new JavaBeans(id, nomeCliente, numContainer, tipo, statusAtual,categoria, tipoMovimentacao, dataInicio, dataFim));
 			}
 			con.close();
 			return containers;
@@ -117,13 +118,22 @@ public class DAO {
 	
 	//selecionar o container
 	public void selecionarContainer(JavaBeans container) {
-		String read2 = "select from container where nomeCliente = ?";
-		
+		String read2 = "select from container where id = ?";		
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
-			pst.setString(1, container.getNomeCliente());
+			pst.setString(1, container.getId());
 			ResultSet rs = pst.executeQuery();
+			while (rs.next()) {
+				// setar as variaveis JavaBeans
+				container.setId(rs.getString(1));
+				container.setNomeCliente(rs.getString(2));
+				container.setNumContainer(rs.getString(3));
+				container.setTipo(rs.getString(4));
+				container.setStatusAtual(rs.getString(5));
+				container.setCategoria(rs.getString(6));
+			}
+			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}

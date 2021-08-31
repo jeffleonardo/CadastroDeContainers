@@ -15,16 +15,11 @@ public class JavaBeans {
 		super();
 	}
 
-	
-	public JavaBeans(String id) {
-		super();
-		this.id = id;
-		}
 
-
-	public JavaBeans(String nomeCliente, String numContainer, String tipo, String statusAtual, String categoria,
+	public JavaBeans(String id, String nomeCliente, String numContainer, String tipo, String statusAtual, String categoria,
 			String tipoMovimentacao, String dataInicio, String dataFim) {
 		super();
+		this.id = id;
 		this.nomeCliente = nomeCliente;
 		this.numContainer = numContainer;
 		this.tipo = tipo;

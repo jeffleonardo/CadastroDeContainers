@@ -29,7 +29,6 @@ public class Controller extends HttpServlet {
 
 		String action = request.getServletPath();
 		System.out.println(action);
-		System.out.println(container);
 		if (action.equals("/main")) {
 			listarContainers(request, response);
 		} else if (action.equals("/insertC")) {
@@ -48,13 +47,13 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		// criando um objeto que ira receber os dados JavaBeans
 		ArrayList<JavaBeans> lista = dao.listarContainers();
-		// encaminhar a lista ao documento agenda.jsp
+		// encaminhar a lista ao documento cadastro.jsp
 		request.setAttribute("container", lista);
 		RequestDispatcher rd = request.getRequestDispatcher("cadastro.jsp");
 		rd.forward(request, response);
 	}
 
-	// iserir container
+	// inserir container
 	protected void inserirContainer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// setar as variaveis JavaBeans
@@ -88,9 +87,9 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 		//recebimento do contato que será editado
 		String idCliente = request.getParameter("id");
-		//System.out.println(idCliente);
+		System.out.println(idCliente);
 		//setar a variavel JavaBeans
-		container.setId(idCliente);
+		/*container.setId(idCliente);
 		//executa o metodo selecionarContainer(DAO)
 		dao.selecionarContainer(container);
 		
@@ -101,6 +100,6 @@ public class Controller extends HttpServlet {
 		request.setAttribute("categoria", container.getCategoria());
 		// Encaminhar ao documento editar.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("cadastro.jsp");
-		rd.forward(request, response);
+		rd.forward(request, response);*/
 	}	
 }

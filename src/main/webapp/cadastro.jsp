@@ -28,7 +28,6 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 			<table id="tabela">
 				<thead>
 					<tr>
-						<th>Id</th>
 						<th>Cliente</th>
 						<th>Nº Container</th>
 						<th>Tipo</th>
@@ -45,7 +44,6 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 					for (int i = 0; i < lista.size(); i++) {
 					%>
 					<tr>
-						<td><%=lista.get(i).getId()%></td>
 						<td><%=lista.get(i).getNomeCliente()%></td>
 						<td><%=lista.get(i).getNumContainer()%></td>
 						<td><%=lista.get(i).getTipo()%></td>
