@@ -1,53 +1,53 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
 <meta charset="utf-8">
-<title>Cadastro de container</title>
+<title>Editar container</title>
 <link rel="icon" href="imagens/favicon.jpg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="externa" id="fixed">
 		<div class="header">
-			<h1>Cadastrar container</h1>
+			<h1>Editar container</h1>
 		</div>
 		<div class="interna">
-			<form name="newContainer" action="insertC" method="get">
+			<form name="newContainer" action="updateC" method="get">
 				<h4>Cliente:</h4>
 				<input type="text" class="caixa1" name="cliente"
-					placeholder="Nome do cliente" required> <br>
+				 required value="<%out.print(request.getAttribute("nomeCliente"));%>"> <br>
 				<h4>Número do container:</h4>
 				<input type="text" class="caixa1" pattern="[a-zA-Z]{4}[0-9]{7}"
-					placeholder="4 letras e 7 números EX: ABCD1234567"
-					title="O formato deve ser 4 letras e 7 números. EX: ABCD1234567"
-					name="numContainer" required> <br>
+					name="numContainer" required value="<%out.print(request.getAttribute("numContainer"));%>"> <br>
 
 				<h4>Tipo de container:</h4>
 				<select name="tipo" class="caixa1" required>
-					<option disabled value="" selected hidden>Tipo:</option>
+					<option disabled value="" selected hidden value="<%out.print(request.getAttribute("tipo")); %>">Tipo:</option>
 					<option value="20">20</option>
 					<option value="40">40</option>
 				</select> <br>
 
 				<h4>Status:</h4>
 				<select name="status" class="caixa1" required>
-					<option disabled value="" selected hidden>Status atual:</option>
+					<option disabled value="" selected hidden value="<%out.print(request.getAttribute("status")); %>">Status atual:</option>
 					<option value="Cheio">Cheio</option>
 					<option value="Vazio">Vazio</option>
 				</select>
 
 				<h4>Categoria:</h4>
 				<select name="categoria" class="caixa1" required>
-					<option disabled value="" selected hidden>Categoria</option>
+					<option disabled value="" selected hidden value="<%out.print(request.getAttribute("categoria")); %>">Categoria</option>
 					<option value="Importacao">Importação</option>
 					<option value="Exportacao">Exportacao</option>
-				</select><br><br> 
+				</select><br>
+				<br>
 				<div class="btn_submit">
-					<input type="submit" value="Próximo" class="botao1">
+					<input type="submit" value="Atualizar" class="botao1">
 				</div>
 			</form>
-			<br>
-			<br>
+			<br> <br>
 		</div>
 		<div id="rodape">&copy;Todos os direitos reservados</div>
 	</div>

@@ -10,10 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/select", "/update", "/delete" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/select", "/updateC", "/delete", "/report" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,8 +43,14 @@ public class Controller extends HttpServlet {
 		} else if (action.equals("/insertM")) {
 			inserirMovimentacao(request, response);
 		} else if (action.equals("/select")) {
+			listarContainer(request, response);
+		} else if (action.equals("/updateC")) {
 			editarContainer(request, response);
-		}else {
+		} else if (action.equals("/delete")) {
+			removerContainer(request, response);
+		}else if (action.equals("/report")) {
+			gerarRelatorio(request, response);
+		} else {
 			response.sendRedirect("index.html");
 		}
 	}
@@ -81,25 +94,109 @@ public class Controller extends HttpServlet {
 
 		response.sendRedirect("main");
 	}
-	
-	//editar contato
-	protected void editarContainer(HttpServletRequest request, HttpServletResponse response)
+
+	// editar contato
+	protected void listarContainer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//recebimento do contato que será editado
+		// recebimento do contato que será editado
 		String idCliente = request.getParameter("id");
 		System.out.println(idCliente);
-		//setar a variavel JavaBeans
-		/*container.setId(idCliente);
-		//executa o metodo selecionarContainer(DAO)
+		// setar a variavel JavaBeans
+		container.setId(idCliente);
+		// executa o metodo selecionarContainer(DAO)
 		dao.selecionarContainer(container);
-		
+
+		request.setAttribute("id", container.getId());
 		request.setAttribute("nomeCliente", container.getNomeCliente());
 		request.setAttribute("numContainer", container.getNumContainer());
 		request.setAttribute("tipo", container.getTipo());
 		request.setAttribute("status", container.getStatusAtual());
 		request.setAttribute("categoria", container.getCategoria());
-		// Encaminhar ao documento editar.jsp
-		RequestDispatcher rd = request.getRequestDispatcher("cadastro.jsp");
-		rd.forward(request, response);*/
-	}	
+		// Encaminhar ao documento editarContainer.jsp
+		RequestDispatcher rd = request.getRequestDispatcher("editarContainer.jsp");
+		rd.forward(request, response);
+	}
+
+	protected void editarContainer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// setar as variaveis JavaBeans
+
+		container.setId(request.getParameter("id"));
+		container.setNomeCliente(request.getParameter("nomeCliente"));
+		container.setNumContainer(request.getParameter("numContainer"));
+		container.setTipo(request.getParameter("tipo"));
+		container.setStatusAtual(request.getParameter("status"));
+		container.setCategoria(request.getParameter("categoria"));
+		// executar o metodo alterarContainer
+		dao.alterarContainer(container);
+		// redirecionar para o documento cadastro.jsp(atualizando os dados)
+		response.sendRedirect("main");
+	}
+
+	// Remover contato
+	protected void removerContainer(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// recebimento do id do container a ser excluido
+		// setar a variavel idcon JavaBeans
+		container.setId(request.getParameter("id"));
+		// executar o metodo deletarContainer
+		dao.deletarContato(container);
+		// redirecionar para o documento cadastro.jsp(atualizando os dados)
+		response.sendRedirect("main");
+	}
+
+	// gerar relatorio
+	protected void gerarRelatorio(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Document documento = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
+		try {
+			// tipo e conteudo
+			response.setContentType("apllication/pdf");
+			// nome do documento
+			response.addHeader("Content-Disposition", "inline; filename= " + "containers.pdf");
+			// criar documento
+			PdfWriter.getInstance(documento, response.getOutputStream());
+			// abrir o documento
+			documento.open();
+			documento.add(new Paragraph("Relatório de containers"));
+			documento.add(new Paragraph(" "));
+			// criar uma tabela
+			PdfPTable tabela = new PdfPTable(8);
+			// cabecalho
+			PdfPCell col1 = new PdfPCell(new Paragraph("Cliente"));
+			PdfPCell col2 = new PdfPCell(new Paragraph("Nº Container"));
+			PdfPCell col3 = new PdfPCell(new Paragraph("Tipo"));
+			PdfPCell col4 = new PdfPCell(new Paragraph("Status"));
+			PdfPCell col5 = new PdfPCell(new Paragraph("Categoria"));
+			PdfPCell col6 = new PdfPCell(new Paragraph("Movimentação"));
+			PdfPCell col7 = new PdfPCell(new Paragraph("Entrada"));
+			PdfPCell col8 = new PdfPCell(new Paragraph("Saída"));
+			tabela.addCell(col1);
+			tabela.addCell(col2);
+			tabela.addCell(col3);
+			tabela.addCell(col4);
+			tabela.addCell(col5);
+			tabela.addCell(col6);
+			tabela.addCell(col7);
+			tabela.addCell(col8);
+			// popular a tabela com os containers
+			ArrayList<JavaBeans> lista = dao.listarContainers();
+			for (int i = 0; i < lista.size(); i++) {
+				tabela.addCell(lista.get(i).getNomeCliente());
+				tabela.addCell(lista.get(i).getNumContainer());
+				tabela.addCell(lista.get(i).getTipo());
+				tabela.addCell(lista.get(i).getStatusAtual());
+				tabela.addCell(lista.get(i).getCategoria());
+				tabela.addCell(lista.get(i).getTipoMovimentacao());
+				tabela.addCell(lista.get(i).getDataInicio());
+				tabela.addCell(lista.get(i).getDataFim());
+			}
+			documento.add(tabela);
+			documento.close();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			documento.close();
+		}
+
+	}
 }
