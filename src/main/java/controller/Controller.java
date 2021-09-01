@@ -105,6 +105,8 @@ public class Controller extends HttpServlet {
 		container.setId(idCliente);
 		// executa o metodo selecionarContainer(DAO)
 		JavaBeans container = dao.selecionarContainer(idCliente);
+		
+		System.out.println(container);
 
 		request.setAttribute("id", container.getId());
 		request.setAttribute("nomeCliente", container.getNomeCliente());
@@ -112,6 +114,9 @@ public class Controller extends HttpServlet {
 		request.setAttribute("tipo", container.getTipo());
 		request.setAttribute("status", container.getStatusAtual());
 		request.setAttribute("categoria", container.getCategoria());
+		request.setAttribute("movimentacao", container.getTipoMovimentacao());
+		request.setAttribute("dataInicio", container.getDataInicio());
+		request.setAttribute("dataFim", container.getDataFim());
 		// Encaminhar ao documento editarContainer.jsp
 		RequestDispatcher rd = request.getRequestDispatcher("editarContainer.jsp");
 		rd.forward(request, response);
@@ -127,6 +132,9 @@ public class Controller extends HttpServlet {
 		container.setTipo(request.getParameter("tipo"));
 		container.setStatusAtual(request.getParameter("status"));
 		container.setCategoria(request.getParameter("categoria"));
+		container.setTipoMovimentacao(request.getParameter("movimentacao"));
+		container.setDataInicio(request.getParameter("dataInicio"));
+		container.setDataFim(request.getParameter("dataFim"));
 		
 		// executar o metodo alterarContainer
 		dao.alterarContainer(container);

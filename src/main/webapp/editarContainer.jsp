@@ -1,3 +1,5 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -9,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="externa" id="fixed">
+	<div class="externa" >
 		<div class="header">
 			<h1>Editar container</h1>
 		</div>
@@ -41,13 +43,30 @@
 					<option value="Importacao">Importação</option>
 					<option value="Exportacao">Exportacao</option>
 				</select><br>
-				<br>
+				<h4>Movimentação:</h4>
+				<select name="movimentacao" class="caixa1" required value="<%out.print(request.getAttribute("movimentacao")); %>">
+					<option value="Embarque">Embarque</option>
+					<option value="Descarga">Descarga</option>
+					<option value="Gate In">Gate In</option>
+					<option value="Gate out">Gate out</option>
+					<option value="Pos/Pilha">Pos/Pilha</option>
+					<option value="Pesagem">Pesagem</option>
+					<option value="Scanner">Scanner</option>
+				</select> <br>
+
+				<h4>Entrada:</h4>
+				<input type="datetime-local" name="dataInicio"
+					value="<%out.print(request.getAttribute("dataInicio").toString().replace(" ", "T").substring(0, 19-3)); %>" class="caixa1">
+
+				<h4>Saída:</h4>
+				<input type="datetime-local" name="dataFim" value="<%out.print(request.getAttribute("dataInicio").toString().replace(" ", "T").substring(0, 19-3)); %>"
+					class="caixa1">
 				<div class="btn_submit">
 					<input type="submit" value="Atualizar" class="botao1">
 				</div>
 			</form>
-			<br> <br>
-		</div>
+			<br> <br>			
+		</div>		
 		<div id="rodape">&copy;Todos os direitos reservados</div>
 	</div>
 </body>

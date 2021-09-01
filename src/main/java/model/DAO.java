@@ -120,7 +120,7 @@ public class DAO {
 
 	// selecionar o container
 	public JavaBeans selecionarContainer(String id){
-		String read2 = "select * from container where id = ?";
+		String read2 = "select c.id, c.numContainer, c.nomeCliente, c.tipo, c.statusAtual, c.categoria, m.tipoMovimentacao, m.horaInicio, m.horaFim from container c  inner join movimentacoes m on c.id = ? and c.id = m.id_container;";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
@@ -135,6 +135,9 @@ public class DAO {
 				container.setTipo(rs.getString(4));
 				container.setStatusAtual(rs.getString(5));
 				container.setCategoria(rs.getString(6));
+				container.setTipoMovimentacao(rs.getString(7));
+				container.setDataInicio(rs.getString(8));
+				container.setDataFim(rs.getString(9));
 			}
 			con.close();
 			return container;
@@ -146,6 +149,7 @@ public class DAO {
 
 	public void alterarContainer(JavaBeans container) {
 		String update = "update container set nomeCliente=?, numContainer=?, tipo=?, statusAtual=?, categoria=? where id=?";
+		
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(update);			
@@ -155,12 +159,29 @@ public class DAO {
 			pst.setString(4, container.getStatusAtual());
 			pst.setString(5, container.getCategoria());
 			pst.setInt(6, Integer.parseInt(container.getId()));
-			pst.executeUpdate();
+			pst.execute();
 			con.close();
+			alterarMovimentacao(container);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public void alterarMovimentacao(JavaBeans container) {
+		String update = "update movimentacoes set tipoMovimentacao=?, horaInicio=?, horaFim=? where id_container=?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(update);	
+			pst.setString(1, container.getTipoMovimentacao());
+			pst.setString(2, container.getDataInicio());
+			pst.setString(3, container.getDataFim());
+			pst.setString(4, container.getId());
+			pst.execute();
+			con.close();			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}		
+	}	
 	
 	//CRUD DELETE
 	public void deletarContainer(JavaBeans container) {
@@ -169,19 +190,19 @@ public class DAO {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(delete);
 			pst.setString(1, container.getId());
-			pst.executeUpdate();
+			pst.execute();
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
 	}
 }
 	public void deletarMovimentacao(JavaBeans container) {
-		String delete = "delete from movimentacoes where id=?";
+		String delete = "delete from movimentacoes where id_container=?";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(delete);
 			pst.setString(1, container.getId());
-			pst.executeUpdate();
+			pst.execute();
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);

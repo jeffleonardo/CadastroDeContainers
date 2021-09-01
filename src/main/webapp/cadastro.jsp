@@ -61,10 +61,10 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 					}
 					%>
 				</tbody>
-			</table>
+			</table>			
 		</div>
-	</div>
-	<div id="rodape">&copy;Todos os direitos reservados</div>
+		<div id="rodape">&copy;Todos os direitos reservados</div>
+	</div>	
 	<script src="scripts/excluir.js"></script>
 </body>
 </html>

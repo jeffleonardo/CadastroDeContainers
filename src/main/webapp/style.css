@@ -11,6 +11,8 @@
 }
 
 body, html {
+	min-height: 100vh;
+	max-width: 100vw;
 	width: 100%;
 	height: 100%;
 	font-family: 'Open Sans', sans-serif;
@@ -19,57 +21,51 @@ body, html {
 	
 }
 
+
+
 .header {
 	height: 100px;
 	width: 100%;
 	background-color: #2ECCFA;
 	text-align: center;
 	padding: 25px;
+	justify-self: center;
+	align-self:center;
 }
 
 .header h1 {
 	color: #642EFE;
 }
 
-#fixed{
-	position: fixed;
-	top: 0;
-	left: 0;
-}
-
 .externa {
 	width: 100%;
 	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
+	display:flex;
+	flex-flow: column nowrap;	
 }
 
 .interna {
-	width: 1000px;
-	height: 1000px;
-	position: absolute;
-	top: 88%;
-	left: 50%;
-	margin-top: -500px;
-	margin-left: -500px;
+	flex: 1;
+	justify-self: center;
+	align-self:center;
+	padding: 20px 0 10px;
 }
 
 .navBar {
 	padding: 5px;
 	padding-left: 0;
-	width: 800px;
-	height: 40px;
 	margin-top: 50px;
-	margin-left: 345px;
+	justify-self: center;
+	align-self:center;
 }
 
-.interna h4 {
-	margin-left: 340px;
+.btn_submit {
+	display: flex;
+	justify-content: center;
 }
 
 .btn_submit input {
-	margin-left: 450px;
+	margin:0 auto;
 }
 
 .botao1 {
@@ -92,10 +88,10 @@ body, html {
 	font-size: 1.2em;
 	font-weight: 700;
 	border-radius: 5px;
+	margin-left: 10px;
 }
 
 .caixa1 {
-	margin-left: 340px;
 	width: 320px;
 	padding: 15px;
 	margin-bottom: 15px;
@@ -124,14 +120,13 @@ body, html {
 #tabela {
 	padding: 0;
 	margin-top: 30px;
-	margin-left: 400;
 	border-collapse: collapse;
 }
 
 #tabela th {
 	border: 1px solid #ddd;
 	padding: 10px;
-	text-align: left;
+	text-align: center;
 	background-color: #66bbff;
 	color: #fff;
 }
@@ -139,6 +134,7 @@ body, html {
 #tabela td {
 	border: 1px solid #ddd;
 	padding: 10px;
+	text-align: center;
 }
 
 #rodape {
@@ -146,10 +142,6 @@ body, html {
 	text-align: center;
 	color: #642EFE;
 	background-color: #2ECCFA;
-	clear: both;
-	position: fixed;
-	bottom: 0;
-	left: 0;
 	width: 100%;
 	padding: 15px;
 }
