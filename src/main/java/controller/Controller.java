@@ -20,7 +20,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/select", "/updateC", "/delete", "/report" })
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insertC", "/insertM", "/select", "/updateC", "/delete",
+		"/report" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +49,7 @@ public class Controller extends HttpServlet {
 			editarContainer(request, response);
 		} else if (action.equals("/delete")) {
 			removerContainer(request, response);
-		}else if (action.equals("/report")) {
+		} else if (action.equals("/report")) {
 			gerarRelatorio(request, response);
 		} else {
 			response.sendRedirect("index.html");
@@ -75,7 +76,7 @@ public class Controller extends HttpServlet {
 		container.setTipo(request.getParameter("tipo"));
 		container.setStatusAtual(request.getParameter("status"));
 		container.setCategoria(request.getParameter("categoria"));
-		
+
 		// invocar o metodo inserirContainer passando o objeto container
 		dao.inserirContainer(container);
 
@@ -97,7 +98,7 @@ public class Controller extends HttpServlet {
 
 	// editar contato
 	protected void listarContainer(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
+			throws ServletException, IOException {
 		// recebimento do contato que será editado
 		String idCliente = request.getParameter("id");
 		System.out.println(idCliente);
@@ -105,7 +106,7 @@ public class Controller extends HttpServlet {
 		container.setId(idCliente);
 		// executa o metodo selecionarContainer(DAO)
 		JavaBeans container = dao.selecionarContainer(idCliente);
-		
+
 		System.out.println(container);
 
 		request.setAttribute("id", container.getId());
@@ -125,7 +126,7 @@ public class Controller extends HttpServlet {
 	protected void editarContainer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// setar as variaveis JavaBeans
-		//System.out.println("ola");
+		// System.out.println("ola");
 		container.setId(request.getParameter("id"));
 		container.setNomeCliente(request.getParameter("nomeCliente"));
 		container.setNumContainer(request.getParameter("numContainer"));
@@ -135,12 +136,12 @@ public class Controller extends HttpServlet {
 		container.setTipoMovimentacao(request.getParameter("movimentacao"));
 		container.setDataInicio(request.getParameter("dataInicio"));
 		container.setDataFim(request.getParameter("dataFim"));
-		
+
 		// executar o metodo alterarContainer
 		dao.alterarContainer(container);
 		// redirecionar para o documento cadastro.jsp(atualizando os dados)
 		response.sendRedirect("main");
-		
+
 	}
 
 	// Remover container

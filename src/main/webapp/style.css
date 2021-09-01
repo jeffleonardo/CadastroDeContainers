@@ -18,10 +18,7 @@ body, html {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1em;
 	font-weight: 400;
-	
 }
-
-
 
 .header {
 	height: 100px;
@@ -30,7 +27,7 @@ body, html {
 	text-align: center;
 	padding: 25px;
 	justify-self: center;
-	align-self:center;
+	align-self: center;
 }
 
 .header h1 {
@@ -40,14 +37,26 @@ body, html {
 .externa {
 	width: 100%;
 	height: 100%;
-	display:flex;
-	flex-flow: column nowrap;	
+	display: flex;
+	flex-flow: column nowrap;
+	background-color: #A9F5F2;
+}
+
+.index {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: column nowrap;
+	background-image: url(imagens/porto.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
 }
 
 .interna {
 	flex: 1;
 	justify-self: center;
-	align-self:center;
+	align-self: center;
 	padding: 20px 0 10px;
 }
 
@@ -56,7 +65,7 @@ body, html {
 	padding-left: 0;
 	margin-top: 50px;
 	justify-self: center;
-	align-self:center;
+	align-self: center;
 }
 
 .btn_submit {
@@ -65,7 +74,7 @@ body, html {
 }
 
 .btn_submit input {
-	margin:0 auto;
+	margin: 0 auto;
 }
 
 .botao1 {
@@ -78,6 +87,16 @@ body, html {
 	border-radius: 5px;
 	border: 0;
 	cursor: pointer;
+	transition: 0.5s;
+}
+
+.botao1:hover {
+	background-color: #642EFE;
+	transform: scale(1.1);
+}
+
+.botao2:hover {
+	transform: scale(1.2);
 }
 
 .botao2 {
@@ -89,6 +108,7 @@ body, html {
 	font-weight: 700;
 	border-radius: 5px;
 	margin-left: 10px;
+	transition: 0.5s;
 }
 
 .caixa1 {
@@ -104,12 +124,108 @@ body, html {
 }
 
 .caixa2 {
+	width: 320px;
+	padding: 20px; margin-bottom : 15px;
+	border: 1px solid #66bbff;
+	border-radius: 5px;
+	margin-bottom: 15px;
+}
+
+.caixa2 option {
+	font-size: 18px;
+}
+
+.caixa2 {
 	padding: 5px;
 	margin-bottom: 10px;
 	border: 1px solid #66bbff;
 	border-radius: 5px;
 }
 
+/*-----------------------------tela de login*/
+#telaLogin {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	padding-bottom: 20px;
+}
+
+.card {
+	background-color: #ffffff80;
+	padding: 50px;
+	padding-bottom: 10px;
+	border-radius: 4%;
+	box-shadow: 3px 3px 1px 0px #00000075;
+}
+
+.label-float input {
+	width: 100%;
+	padding: 10px 10px;
+	display: inline-block;
+	border: 0;
+	border-bottom: 1px solid #272262;
+	background-color: transparent;
+	outline: none;
+	min-width: 180px;
+	font-size: 18px;
+	transition: all .3s ease-out;
+	border-radius: 0;
+}
+
+.label-float {
+	position: relative;
+	padding-top: 13px;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.label-float input:focus {
+	border-bottom: 2px solid #4038a0;
+}
+
+.label-float label {
+	color: #272262;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: 13px;
+	transition: all .3s ease-out;
+}
+
+.label-float input:focus+label {
+	font-size: 13px;
+	margin-top: 0;
+	color: #4038a0;
+}
+
+.card button {
+	background-color: transparent;
+	border-color: #242262;
+	color: #272262;
+	padding: 7px;
+	font-weight: bold;
+	font-size: 12pt;
+	margin-top: 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	outline: none;
+	transition: all .5s ease-out;
+}
+
+.card button:hover{
+	background-color: #272262;
+	color: #fff;	
+}
+
+.justify-center{
+	display: flex;
+	justify-content: center;	
+}
+
+
+/*-----------------------------fim tela de login*/
 #caixa3 {
 	padding: 5px;
 	margin-bottom: 10px;
@@ -135,6 +251,7 @@ body, html {
 	border: 1px solid #ddd;
 	padding: 10px;
 	text-align: center;
+	background-color: #ffffff;
 }
 
 #rodape {
@@ -144,4 +261,16 @@ body, html {
 	background-color: #2ECCFA;
 	width: 100%;
 	padding: 15px;
+}
+
+#rodape2 {
+	height: 50px;
+	text-align: center;
+	color: #642EFE;
+	background-color: #2ECCFA;
+	width: 100%;
+	padding: 15px;
+    position:absolute;
+    bottom:0;
+    width:100%;
 }

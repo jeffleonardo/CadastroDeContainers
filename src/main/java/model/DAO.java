@@ -119,7 +119,7 @@ public class DAO {
 	// CRUD UPDATE
 
 	// selecionar o container
-	public JavaBeans selecionarContainer(String id){
+	public JavaBeans selecionarContainer(String id) {
 		String read2 = "select c.id, c.numContainer, c.nomeCliente, c.tipo, c.statusAtual, c.categoria, m.tipoMovimentacao, m.horaInicio, m.horaFim from container c  inner join movimentacoes m on c.id = ? and c.id = m.id_container;";
 		try {
 			Connection con = conectar();
@@ -149,10 +149,10 @@ public class DAO {
 
 	public void alterarContainer(JavaBeans container) {
 		String update = "update container set nomeCliente=?, numContainer=?, tipo=?, statusAtual=?, categoria=? where id=?";
-		
+
 		try {
 			Connection con = conectar();
-			PreparedStatement pst = con.prepareStatement(update);			
+			PreparedStatement pst = con.prepareStatement(update);
 			pst.setString(1, container.getNomeCliente());
 			pst.setString(2, container.getNumContainer());
 			pst.setString(3, container.getTipo());
@@ -166,24 +166,24 @@ public class DAO {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public void alterarMovimentacao(JavaBeans container) {
 		String update = "update movimentacoes set tipoMovimentacao=?, horaInicio=?, horaFim=? where id_container=?";
 		try {
 			Connection con = conectar();
-			PreparedStatement pst = con.prepareStatement(update);	
+			PreparedStatement pst = con.prepareStatement(update);
 			pst.setString(1, container.getTipoMovimentacao());
 			pst.setString(2, container.getDataInicio());
 			pst.setString(3, container.getDataFim());
 			pst.setString(4, container.getId());
 			pst.execute();
-			con.close();			
+			con.close();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}		
-	}	
-	
-	//CRUD DELETE
+		}
+	}
+
+	// CRUD DELETE
 	public void deletarContainer(JavaBeans container) {
 		String delete = "delete from container where id=?";
 		try {
@@ -194,8 +194,9 @@ public class DAO {
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
+		}
 	}
-}
+
 	public void deletarMovimentacao(JavaBeans container) {
 		String delete = "delete from movimentacoes where id_container=?";
 		try {
