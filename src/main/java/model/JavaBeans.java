@@ -14,8 +14,13 @@ public class JavaBeans {
 	public JavaBeans() {
 		super();
 	}
-
-
+	
+	@Override
+	public String toString() {
+		return "JavaBeans [id=" + id + ", nomeCliente=" + nomeCliente + ", numContainer=" + numContainer + ", tipo="
+				+ tipo + ", statusAtual=" + statusAtual + ", categoria=" + categoria + ", tipoMovimentacao="
+				+ tipoMovimentacao + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + "]";
+	}
 	public JavaBeans(String id, String nomeCliente, String numContainer, String tipo, String statusAtual, String categoria,
 			String tipoMovimentacao, String dataInicio, String dataFim) {
 		super();

@@ -75,7 +75,7 @@ public class Controller extends HttpServlet {
 		container.setTipo(request.getParameter("tipo"));
 		container.setStatusAtual(request.getParameter("status"));
 		container.setCategoria(request.getParameter("categoria"));
-
+		
 		// invocar o metodo inserirContainer passando o objeto container
 		dao.inserirContainer(container);
 
@@ -97,14 +97,14 @@ public class Controller extends HttpServlet {
 
 	// editar contato
 	protected void listarContainer(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException{
 		// recebimento do contato que será editado
 		String idCliente = request.getParameter("id");
 		System.out.println(idCliente);
 		// setar a variavel JavaBeans
 		container.setId(idCliente);
 		// executa o metodo selecionarContainer(DAO)
-		dao.selecionarContainer(container);
+		JavaBeans container = dao.selecionarContainer(idCliente);
 
 		request.setAttribute("id", container.getId());
 		request.setAttribute("nomeCliente", container.getNomeCliente());
@@ -120,27 +120,30 @@ public class Controller extends HttpServlet {
 	protected void editarContainer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// setar as variaveis JavaBeans
-
+		//System.out.println("ola");
 		container.setId(request.getParameter("id"));
 		container.setNomeCliente(request.getParameter("nomeCliente"));
 		container.setNumContainer(request.getParameter("numContainer"));
 		container.setTipo(request.getParameter("tipo"));
 		container.setStatusAtual(request.getParameter("status"));
 		container.setCategoria(request.getParameter("categoria"));
+		
 		// executar o metodo alterarContainer
 		dao.alterarContainer(container);
 		// redirecionar para o documento cadastro.jsp(atualizando os dados)
 		response.sendRedirect("main");
+		
 	}
 
-	// Remover contato
+	// Remover container
 	protected void removerContainer(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// recebimento do id do container a ser excluido
 		// setar a variavel idcon JavaBeans
 		container.setId(request.getParameter("id"));
 		// executar o metodo deletarContainer
-		dao.deletarContato(container);
+		dao.deletarContainer(container);
+		dao.deletarMovimentacao(container);
 		// redirecionar para o documento cadastro.jsp(atualizando os dados)
 		response.sendRedirect("main");
 	}

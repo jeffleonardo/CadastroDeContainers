@@ -54,7 +54,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 						<td><%=lista.get(i).getDataFim()%></td>
 						<td><a href="select?id=<%=lista.get(i).getId()%>"
 							class="botao1">Editar</a><a
-							href="javascript: confirmar(<%=lista.get(i).getId()%> )"
+							href="javascript: excluir(<%=lista.get(i).getId()%> )"
 							class="botao2">Excluir</a></td>
 					</tr>
 					<%
@@ -65,5 +65,6 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 		</div>
 	</div>
 	<div id="rodape">&copy;Todos os direitos reservados</div>
+	<script src="scripts/excluir.js"></script>
 </body>
 </html>

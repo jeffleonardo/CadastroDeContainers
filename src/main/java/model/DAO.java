@@ -119,39 +119,42 @@ public class DAO {
 	// CRUD UPDATE
 
 	// selecionar o container
-	public void selecionarContainer(JavaBeans container) {
-		String read2 = "select from container where id = ?";
+	public JavaBeans selecionarContainer(String id){
+		String read2 = "select * from container where id = ?";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(read2);
-			pst.setString(1, container.getId());
+			pst.setInt(1, Integer.parseInt(id));
 			ResultSet rs = pst.executeQuery();
+			JavaBeans container = new JavaBeans();
 			while (rs.next()) {
 				// setar as variaveis JavaBeans
 				container.setId(rs.getString(1));
-				container.setNomeCliente(rs.getString(2));
-				container.setNumContainer(rs.getString(3));
+				container.setNumContainer(rs.getString(2));
+				container.setNomeCliente(rs.getString(3));
 				container.setTipo(rs.getString(4));
 				container.setStatusAtual(rs.getString(5));
 				container.setCategoria(rs.getString(6));
 			}
 			con.close();
+			return container;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
 		}
 	}
 
-	public void alterarContainer(JavaBeans contato) {
+	public void alterarContainer(JavaBeans container) {
 		String update = "update container set nomeCliente=?, numContainer=?, tipo=?, statusAtual=?, categoria=? where id=?";
 		try {
 			Connection con = conectar();
-			PreparedStatement pst = con.prepareStatement(update);
-			pst.setString(1, contato.getId());
-			pst.setString(2, contato.getNomeCliente());
-			pst.setString(3, contato.getNumContainer());
-			pst.setString(4, contato.getTipo());
-			pst.setString(5, contato.getStatusAtual());
-			pst.setString(6, contato.getCategoria());
+			PreparedStatement pst = con.prepareStatement(update);			
+			pst.setString(1, container.getNomeCliente());
+			pst.setString(2, container.getNumContainer());
+			pst.setString(3, container.getTipo());
+			pst.setString(4, container.getStatusAtual());
+			pst.setString(5, container.getCategoria());
+			pst.setInt(6, Integer.parseInt(container.getId()));
 			pst.executeUpdate();
 			con.close();
 		} catch (Exception e) {
@@ -160,17 +163,28 @@ public class DAO {
 	}
 	
 	//CRUD DELETE
-	public void deletarContato(JavaBeans contato) {
-		String delete = "delete from container where idcon=?";
+	public void deletarContainer(JavaBeans container) {
+		String delete = "delete from container where id=?";
 		try {
 			Connection con = conectar();
 			PreparedStatement pst = con.prepareStatement(delete);
-			pst.setString(1, contato.getId());
+			pst.setString(1, container.getId());
+			pst.executeUpdate();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+	}
+}
+	public void deletarMovimentacao(JavaBeans container) {
+		String delete = "delete from movimentacoes where id=?";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(delete);
+			pst.setString(1, container.getId());
 			pst.executeUpdate();
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
-
 }
