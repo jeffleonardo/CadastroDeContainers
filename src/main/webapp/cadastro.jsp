@@ -1,3 +1,4 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
@@ -22,7 +23,7 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 		</div>
 		<div class="navBar">
 			<a href="novoContainer.html" class="botao1">Novo Container</a><a
-				href="report" class="botao2">Relatório</a>
+				href="report" class="botao2">Baixar Relatório</a>
 		</div>
 		<div class="interna">
 			<table id="tabela">
@@ -61,10 +62,24 @@ ArrayList<JavaBeans> lista = (ArrayList<JavaBeans>) request.getAttribute("contai
 					}
 					%>
 				</tbody>
-			</table>			
+			</table>
+			<table id="tabela">
+				<thead>
+					<tr>
+						<th colspan="2">Relatório</th>
+					</tr>
+					<tr>
+						<th>Total Exportação</th>
+						<th>Total Importação</th>
+					</tr>
+				</thead>
+				<tbody>					
+						
+				</tbody>
+			</table>
 		</div>
 		<div id="rodape">&copy;Todos os direitos reservados</div>
-	</div>	
+	</div>
 	<script src="scripts/excluir.js"></script>
 </body>
 </html>

@@ -209,4 +209,31 @@ public class DAO {
 			System.out.println(e);
 		}
 	}
+
+	// COUNT
+	public void countExportacao(JavaBeans container) {
+		String count = "select count(categoria) from container where categoria = 'exportacao'";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(count);
+			pst.setString(1, container.getId());
+			pst.execute();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}	
+	
+	public void countImportacao(JavaBeans container) {
+		String count = "select count(categoria) from container where categoria = 'importacao'";
+		try {
+			Connection con = conectar();
+			PreparedStatement pst = con.prepareStatement(count);
+			pst.setString(1, container.getId());
+			pst.execute();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}	
 }

@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -107,8 +109,6 @@ public class Controller extends HttpServlet {
 		// executa o metodo selecionarContainer(DAO)
 		JavaBeans container = dao.selecionarContainer(idCliente);
 
-		System.out.println(container);
-
 		request.setAttribute("id", container.getId());
 		request.setAttribute("nomeCliente", container.getNomeCliente());
 		request.setAttribute("numContainer", container.getNumContainer());
@@ -160,7 +160,7 @@ public class Controller extends HttpServlet {
 	// gerar relatorio
 	protected void gerarRelatorio(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Document documento = new Document(PageSize.A4, 10f, 10f, 10f, 10f);
+		Document documento = new Document(PageSize.A4, 30f, 30f, 30f, 30f);
 		try {
 			// tipo e conteudo
 			response.setContentType("apllication/pdf");
@@ -170,7 +170,7 @@ public class Controller extends HttpServlet {
 			PdfWriter.getInstance(documento, response.getOutputStream());
 			// abrir o documento
 			documento.open();
-			documento.add(new Paragraph("Relatório de containers"));
+			documento.add(new Paragraph(new Phrase(20f, "Relatório de containers", FontFactory.getFont(FontFactory.HELVETICA, 18F))));
 			documento.add(new Paragraph(" "));
 			// criar uma tabela
 			PdfPTable tabela = new PdfPTable(8);
