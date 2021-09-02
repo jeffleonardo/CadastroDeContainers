@@ -30,7 +30,7 @@ CREATE TABLE `container` (
   `statusAtual` varchar(5) DEFAULT NULL,
   `categoria` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,6 @@ CREATE TABLE `container` (
 
 LOCK TABLES `container` WRITE;
 /*!40000 ALTER TABLE `container` DISABLE KEYS */;
-INSERT INTO `container` VALUES (1,'lili1478529','miguel','40','Vazio','Exportacao'),(2,'jefa1784594','HamburgerSud','40','Vazio','Exportacao'),(3,'kaka1234567','livia','20','Vazio','Importacao'),(4,'otav1457845','otavio','40','Vazio','Importacao'),(5,'erik1234567','HamburgerSud','40','Cheio','Exportacao'),(6,'erik1234567','vasefude','40','Vazio','Importacao'),(7,'erik1234567','teste3','40','Vazio','Exportacao'),(8,'tutu1781594','arthur','20','Vazio','Exportacao'),(9,'test1784592','testeInput','20','Cheio','Importacao'),(10,'livi2468579','relatorio','40','Cheio','Importacao'),(11,'jefa1784594','teste3','40','Vazio','Importacao'),(12,'erik1234567','HamburgerSud','40','Cheio','Importacao'),(13,'sant1478523','santos','40','Vazio','Exportacao');
 /*!40000 ALTER TABLE `container` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-09-01 22:38:56
+-- Dump completed on 2021-09-01 23:17:43
